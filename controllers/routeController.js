@@ -82,5 +82,13 @@ module.exports = {
                 //res.send(order)
             })
             .catch(error => console.error(`Something went wrong when finding order ${error.stack}`))
+    },
+    logout: (req, res) => {
+        if(req.session.user && req.cookies.userCookie){
+            res.clearCookie("userCookie");
+            res.redirect("/");
+        } else {
+            res.redirect("login");
+        }
     }
 }
